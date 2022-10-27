@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AppOwnsDataDB": "Server=YOUR_DABASE_SERVER;Database=AppOwnsDataDB;User ID=AppOwnsDataDbAmin;Password=YOUR_PASSWORD;Trusted_Connection=False;Encrypt=True;",
+    "SendGridApiKey": "YOUR_SENDGRID_API_KEY",
+    "WelcomeMessageTemplateId": "YOUR_SENDGRID_TEPMATE_ID"
+  }
+}

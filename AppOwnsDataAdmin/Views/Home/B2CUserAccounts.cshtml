@@ -1,0 +1,34 @@
+﻿@model List<Microsoft.Graph.User>
+
+@{
+  List<Microsoft.Graph.User> Users = Model;
+}
+
+<h2>B2C User Accounts</h2>
+
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+    <th>Email</th>
+    <th>Display Name</th>
+    <th>Identity Provider</th>
+    <th>Created</th>
+      <th>Enabled</th>
+    <th>View</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  @foreach (var user in Users) {
+    <tr>
+      <td>@user.OtherMails.FirstOrDefault()</td>
+      <td>@user.DisplayName</td>
+      <td>@user.CreationType</td>
+      <td>@user.CreatedDateTime.Value.ToLocalTime().ToString("G")</td>
+      <td>@user.AccountEnabled.Value</td>
+      <td style="text-align:center"><a href="B2CUserAccount/?userId=@user.Id" class="nav nav-link"><i class="fa fa-binoculars"></i></a></td>
+      <td style="text-align:center"><a href="DeleteB2CUserAccount/?userId=@user.Id" class="nav nav-link"><i class="fa fa-remove"></i></a></td>
+    </tr>
+  }
+
+</table>
+

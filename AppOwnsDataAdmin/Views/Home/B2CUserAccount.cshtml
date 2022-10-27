@@ -1,0 +1,95 @@
+﻿@model Microsoft.Graph.User
+
+<h2>
+  <span><a class="btn btn-sm h2-backarrow" asp-action="B2CUserAccounts"><i class="fa fa-backward"></i></a></span>
+  <span>B2C User Account Details</span>
+</h2>
+
+
+<div class="toolbar">
+  <a id="enable-account-toggle" class="btn btn-primary" asp-action="ToggleB2CUserAccount" asp-route-userId="@Model.Id">
+    @if (Model.AccountEnabled.Value) {
+      <i class="fa fa-lock"></i>
+    }
+    else {
+      <i class="fa fa-unlock"></i>
+    }
+    @(Model.AccountEnabled.Value ? "Disabled Account" : "EnableAccount")
+  </a>
+</div>
+
+<form class="form-horizontal" role="form">
+  <fieldset>
+    <div class="form-group row">
+      <label for="accountEnabled" class="col-sm-3 col-form-label">Account Enabled</label>
+      <div class="col-sm-9">
+        <input class="form-control " id="accountEnabled" name="accountEnabled" readonly value="@Model.AccountEnabled.Value.ToString()">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="LoginId" class="col-sm-3 col-form-label">Id</label>
+      <div class="col-sm-9">
+        <input class="form-control " id="LoginId" name="LoginId" readonly value="@Model.Id">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="HomeTenant" class="col-sm-3 col-form-label">UserPrincipalName</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="UserPrincipalName" name="UserPrincipalName" readonly="readonly" value="@Model.UserPrincipalName">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="HomeTenant" class="col-sm-3 col-form-label">Email</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="userEmail" name="userEmail" readonly="readonly" value="@Model.OtherMails.FirstOrDefault()">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="HomeTenant" class="col-sm-3 col-form-label">DisplayName</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="displayName" name="displayName" readonly="readonly" value="@Model.DisplayName">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="UserName" class="col-sm-3 col-form-label">GivenName</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="UserName" name="UserName" readonly="readonly" value="@Model.GivenName">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="Created" class="col-sm-3 col-form-label">Surname</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="Created" name="Created" readonly="readonly" value='@Model.Surname'>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="HomeTenant" class="col-sm-3 col-form-label">Creation Type</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="creationType" name="creationType" readonly="readonly" value="@Model.CreationType">
+      </div>
+    </div>
+
+  </fieldset>
+</form>
+
+<h4>User Identities</h4>
+
+<table class="table table-sm table-bordered table-striped">
+  <tr>
+    <th>SignInType</th>
+    <th>Issuer</th>
+    <th>Issuer Assigned ID</th>
+
+  </tr>
+  @foreach (var identity in Model.Identities) {
+    <tr>
+      <td>@identity.SignInType</td>
+      <td>@identity.Issuer</td>
+      <td>@identity.IssuerAssignedId</td>
+    </tr>
+  }
+</table>

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "DevCamp_B2C_API_Connectors": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7238",
+      "launchBrowser": false
+    }
+  }
+}
